@@ -48,3 +48,26 @@ export function supportPassive () {
   window.removeEventListener('testPassive', noop, options)
   return passive
 }
+
+export function isString (value) {
+  return typeof value === 'string'
+}
+
+export function isElement(node) {
+  return !!(node && node.nodeName)
+}
+
+export function loadElm (elm, src) {
+  elm.src = elm.getAttribute(src)
+  elm.removeAttribute(src)
+}
+
+export function baseOptions (options = {}) {
+  var opts = {
+    src: 'data-lazi-src',
+    threshold: 1
+  }
+  opts.src = options.src ? options.src : opts.src
+  opts.threshold = options.threshold ? options.threshold : opts.threshold
+  return opts
+}

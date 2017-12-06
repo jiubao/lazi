@@ -4,7 +4,7 @@ const info = require('./package.json')
 const config = {}
 
 export default {
-  input: 'src/lazi.js',
+  input: 'src/scroll.js',
   output: [{
     file: info.main,
     format: 'umd',
