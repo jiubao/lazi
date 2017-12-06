@@ -70,7 +70,8 @@ export default (options = {}) => {
     threshold: 1,
     strategy: 0 // 0: IntersectionObserver 1: throttle 2: requestAnimationFrame
   }
-  var opts = {...defaultOptions, ...options}
+  // var opts = {...defaultOptions, ...options}
+  var opts = defaultOptions
 
   var count = 1
   var passive = supportPassive()
