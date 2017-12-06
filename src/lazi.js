@@ -66,7 +66,7 @@ var events = 'scroll'
 
 export default (options = {}) => {
   var defaultOptions = {
-    src: 'data-ilazy-src',
+    src: 'data-lazi-src',
     threshold: 1,
     strategy: 0 // 0: IntersectionObserver 1: throttle 2: requestAnimationFrame
   }
