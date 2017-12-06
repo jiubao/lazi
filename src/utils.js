@@ -49,14 +49,6 @@ export function supportPassive () {
   return passive
 }
 
-export function isString (value) {
-  return typeof value === 'string'
-}
-
-export function isElement(node) {
-  return !!(node && node.nodeName)
-}
-
 export function loadElm (elm, src) {
   elm.src = elm.getAttribute(src)
   elm.removeAttribute(src)
@@ -70,4 +62,12 @@ export function baseOptions (options = {}) {
   opts.src = options.src ? options.src : opts.src
   opts.threshold = options.threshold ? options.threshold : opts.threshold
   return opts
+}
+
+export function isString (value) {
+  return typeof value === 'string'
+}
+
+export function isElement(node) {
+  return !!(node && node.nodeName)
 }

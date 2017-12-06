@@ -39,8 +39,8 @@ export default (options = {}) => {
 
   function observe (fn, threshold) {
     threshold = threshold || opts.threshold
-    var height = window.innerHeight * threshold
-    var width = window.innerWidth * threshold
+    var height = window.innerHeight * (threshold - 1)
+    var width = window.innerWidth * (threshold - 1)
     var config = {
       // root: document.getElementById('articleWrap'),
       root: null,

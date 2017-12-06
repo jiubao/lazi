@@ -7,15 +7,6 @@ var items = []
 
 export default (options = {}) => {
   var opts = baseOptions()
-  // var opts = {
-  //   src: 'data-lazi-src',
-  //   threshold: 1,
-  //   timeout: 150,
-  //   strategy: 0 // 0: IntersectionObserver 1: throttle 2: requestAnimationFrame
-  // }
-
-  // opts.src = options.src ? options.src : opts.src
-  // opts.threshold = options.threshold ? options.threshold : opts.threshold
   opts.timeout = options.timeout ? options.timeout : 150
   opts.strategy = options.strategy ? options.strategy : 1
 

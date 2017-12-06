@@ -4,7 +4,7 @@ const info = require('./package.json')
 const config = {}
 
 export default {
-  input: 'src/scroll.js',
+  input: 'src/index.js',
   output: [{
     file: info.main,
     format: 'umd',

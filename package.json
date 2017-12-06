@@ -2,7 +2,7 @@
   "name": "lazi",
   "version": "0.0.5",
   "description": "lazy load img",
-  "main": "dist/scroll.js",
+  "main": "dist/lazi.js",
   "module": "dist/lazi.module.js",
   "scripts": {
     "minify": "uglifyjs $npm_package_main -o $npm_package_main",
