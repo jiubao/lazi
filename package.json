@@ -1,0 +1,19 @@
+{
+  "name": "lazi",
+  "version": "0.0.1",
+  "description": "lazy load img",
+  "main": "src/lazi.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiubao/lazi.git"
+  },
+  "author": "jiubao <xia.ldj@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jiubao/lazi/issues"
+  },
+  "homepage": "https://github.com/jiubao/lazi#readme"
+}
