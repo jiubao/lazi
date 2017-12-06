@@ -5,16 +5,12 @@ const config = {}
 
 export default {
   input: 'src/lazi.js',
-  // output: {
-  //   file: info.main,
-  //   format: 'cjs'
-  // },
-  targets: [{
-    dest: info.main,
+  output: [{
+    file: info.main,
     format: 'umd',
     moduleName: 'lazi'
   }, {
-    dest: info.module,
+    file: info.module,
     format: 'es'
   }],
   plugins: [
