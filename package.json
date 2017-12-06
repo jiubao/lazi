@@ -1,14 +1,13 @@
 {
   "name": "lazi",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "lazy load img",
   "main": "dist/lazi.js",
   "module": "dist/lazi.module.js",
   "scripts": {
     "minify": "uglifyjs $npm_package_main -o $npm_package_main",
     "build": "rollup -c",
-    "release": "npm run build && npm run minify && npm publish",
-    "tag": "standard-version"
+    "release": "npm run build && npm run minify && standard-version && git push --follow-tags origin master && npm publish"
   },
   "repository": {
     "type": "git",
