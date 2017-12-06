@@ -1,13 +1,14 @@
 {
   "name": "lazi",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "lazy load img",
   "main": "dist/lazi.js",
   "module": "dist/lazi.module.js",
   "scripts": {
     "minify": "uglifyjs $npm_package_main -o $npm_package_main",
     "build": "rollup -c",
-    "release": "npm run build && npm run minify && npm publish"
+    "release": "npm run build && npm run minify && npm publish",
+    "tag": "standard-version"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
   "devDependencies": {
     "rollup": "^0.52.1",
     "rollup-plugin-buble": "^0.18.0",
+    "standard-version": "^4.2.0",
     "uglify-js": "^3.2.1"
   }
 }
