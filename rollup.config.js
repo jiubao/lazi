@@ -8,7 +8,7 @@ export default {
   output: [{
     file: info.main,
     format: 'umd',
-    moduleName: 'lazi'
+    name: 'lazi'
   }, {
     file: info.module,
     format: 'es'
