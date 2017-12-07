@@ -1,6 +1,6 @@
 {
   "name": "lazi",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "lazy load img",
   "main": "dist/lazi.js",
   "module": "dist/lazi.module.js",
