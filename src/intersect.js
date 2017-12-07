@@ -14,7 +14,7 @@ export default (options = {}) => {
   }
 
   function add (srcprop, threshold) {
-    if (!srcprop) return
+    if (!srcprop) srcprop = opts.src
     // selector = selector || opts.src
     if (!observers[srcprop]) observers[srcprop] = observe(load(srcprop), threshold)
     // var observer = observers[srcprop] || observe(load(srcprop), threshold)
