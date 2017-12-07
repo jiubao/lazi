@@ -6,7 +6,8 @@ import intersect from './intersect'
 //  2. throttle
 //  3. requestAnimationFrame
 //  4. IntersectionObserver
-//  5. _
+//  5. add() when not specify srcprop, reload all srcprops
+//  6. _
 export default (options = {}) => {
   if (!options.strategy) options.strategy = 0
   var strategy = options.strategy
@@ -16,6 +17,8 @@ export default (options = {}) => {
   }
 
   if (strategy === 0) options.strategy = 1
+
+  if (strategy === 2 && !window.requestAnimationFrame) options.strategy = 1
 
   return scroll(options)
 }

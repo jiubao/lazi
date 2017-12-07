@@ -1,5 +1,7 @@
 import {loadElm, baseOptions} from './utils'
 
+var observers = {}
+
 export default (options = {}) => {
   var opts = baseOptions()
 
@@ -8,14 +10,16 @@ export default (options = {}) => {
   add(opts.src, opts.threshold)
 
   return {
-    add, load () {}
+    add
   }
 
-  function add (selector, threshold) {
-    if (!selector) return
+  function add (srcprop, threshold) {
+    if (!srcprop) return
     // selector = selector || opts.src
-    var observer = observe(load(selector), threshold)
-    var elms = Array.prototype.slice.call(document.querySelectorAll(`[${selector}]`))
+    if (!observers[srcprop]) observers[srcprop] = observe(load(srcprop), threshold)
+    // var observer = observers[srcprop] || observe(load(srcprop), threshold)
+    var observer = observers[srcprop]
+    var elms = Array.prototype.slice.call(document.querySelectorAll(`[${srcprop}]`))
     elms.forEach(elm => {
       observer.observe(elm)
     })

@@ -33,10 +33,22 @@ lazi()
 
 ## API
 ```js
-var instance = lazi()
+var instance = lazi({threshold: 1, strategy: 2})
 instance.add().load()
 instance.add('data-src', 3).load()
 ```
+
+## `strategies`
+* IntersectionObserver: 0
+* throttle: 1
+* requestAnimationFrame: 2
+
+### `options({src, threshold, strategy, timeout})`
+Reset default configs:
+* `src` reset default src prop (default: `data-lazi-src`)
+* `threshold` reset default threshold (default: `1`)
+* `strategy` reset default strategy (default order: 0 -> 1)
+* `timeout` reset throttle timeout (default: `150`)
 
 ### `add(srcprop, threshold)`
 Add new dom elements into lazy queue:

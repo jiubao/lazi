@@ -18,7 +18,7 @@ export default (options = {}) => {
   bind()
 
   return {
-    add, load, get () { return items }
+    add //, get () { return items }
   }
 
   function add (item, threshold) {
@@ -26,7 +26,8 @@ export default (options = {}) => {
     Array.prototype.slice.call(document.querySelectorAll(`[${item}]`)).forEach(i => {
       items.push(new Lazier(i, item, threshold || opts.threshold))
     })
-    return this
+    return load()
+    // return this
   }
 
   function load () {
