@@ -27,7 +27,6 @@ export default (options = {}) => {
       items.push(new Lazier(i, item, threshold || opts.threshold))
     })
     return load()
-    // return this
   }
 
   function load () {
