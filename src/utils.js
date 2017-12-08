@@ -55,7 +55,7 @@ function setStatus (elm, status) {
 }
 
 export function initElm (elm) {
-  setStatus(elm, '')
+  setStatus(elm, attrs.init)
 }
 
 export function loadElm (elm, src) {
@@ -66,6 +66,7 @@ export function loadElm (elm, src) {
     setStatus(elm, attrs.done)
   }
   img.onerror = function () {
+    elm.src = attrs.empty
     setStatus(elm, attrs.error)
   }
 
