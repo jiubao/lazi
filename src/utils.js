@@ -1,3 +1,4 @@
+import {attrs} from './constants'
 
 export function requestFrame (fn) {
   var ticking = false
@@ -50,13 +51,34 @@ export function supportPassive () {
 }
 
 export function loadElm (elm, src) {
-  elm.src = elm.getAttribute(src)
+  elm.setAttribute(attrs.loading, '')
+
+  var img = new Image()
+  img.onload = function () {
+    elm.setAttribute(attrs.done, '')
+    elm.removeAttribute(attrs.loading)
+  }
+  img.onerror = function () {
+    elm.setAttribute(attrs.error, '')
+    elm.removeAttribute(attrs.loading)
+  }
+
+  img.src = elm.src = elm.getAttribute(src)
   elm.removeAttribute(src)
+}
+
+export function loadImg () {
+  var img = new Image()
+  img.onload = function () {
+    if (mode) oimg.src = src
+    isFunction(fn) && fn()
+  }
+  img.src = src
 }
 
 export function baseOptions (options = {}) {
   var opts = {
-    src: 'data-lazi-src',
+    src: attrs.src,
     threshold: 1
   }
   opts.src = options.src ? options.src : opts.src
