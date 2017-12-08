@@ -8,3 +8,5 @@ export const attrs = {
   error: 'error',
   empty: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
 }
+
+export const srcs = {}

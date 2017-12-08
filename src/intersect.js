@@ -1,9 +1,9 @@
-import {loadElm, baseOptions, initElm} from './utils'
-
-var observers = {}
+import {loadElm, baseOptions, initElm, isFunction} from './utils'
+import {srcs} from './constants'
 
 export default (options = {}) => {
-  var opts = baseOptions()
+  var observers = {}
+  var opts = baseOptions(options)
 
   var count = 1
 
@@ -13,8 +13,22 @@ export default (options = {}) => {
     add
   }
 
-  function add (srcprop, threshold) {
-    if (!srcprop) srcprop = opts.src
+  function add (srcprop, threshold, pre) {
+    if (srcprop) addOne(srcprop, threshold, pre)
+    else {
+      Object.keys(srcs).forEach(src => {
+        addOne(src, srcs[src].threshold, srcs[src].pre)
+      })
+    }
+  }
+
+  function addOne (srcprop, threshold, pre) {
+    // if (srcprop && isFunction(pre)) srcs[srcprop] = pre
+    srcs[srcprop] = {
+      threshold, pre: isFunction(pre) ? pre : opts.pre
+    }
+
+    // if (!srcprop) srcprop = opts.src
     // selector = selector || opts.src
     if (!observers[srcprop]) observers[srcprop] = observe(load(srcprop), threshold)
     // var observer = observers[srcprop] || observe(load(srcprop), threshold)

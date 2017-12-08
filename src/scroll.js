@@ -1,19 +1,20 @@
 import Lazier from './lazier'
-import {throttle, requestFrame, supportPassive, loadElm, baseOptions, initElm} from './utils'
+import {throttle, requestFrame, supportPassive, loadElm, baseOptions, initElm, isFunction} from './utils'
+import {srcs} from './constants'
 
 var events = 'scroll'
-var items = []
 // var events = ['scroll', 'resize']
 
 export default (options = {}) => {
-  var opts = baseOptions()
+  var items = []
+  var opts = baseOptions(options)
   opts.timeout = options.timeout ? options.timeout : 150
   opts.strategy = options.strategy ? options.strategy : 1
 
   var count = 1
   var passive = supportPassive()
 
-  add()
+  add(opts.src, opts.threshold, opts.pre)
   load()
   bind()
 
@@ -21,13 +22,26 @@ export default (options = {}) => {
     add //, get () { return items }
   }
 
-  function add (item, threshold) {
-    item = item || opts.src
-    Array.prototype.slice.call(document.querySelectorAll(`[${item}]`)).forEach(i => {
-      initElm(i)
-      items.push(new Lazier(i, item, threshold || opts.threshold))
-    })
+  function add (item, threshold, pre) {
+    if (item) addOne(item, threshold, pre)
+    else {
+      Object.keys(srcs).forEach(src => {
+        addOne(src, srcs[src].threshold, srcs[src].pre)
+      })
+    }
     return load()
+  }
+
+  function addOne (item, threshold, pre) {
+    // if (isFunction(pre)) srcs[item] = pre
+    // srcs[item] = isFunction(pre) ? pre : opts.pre
+    srcs[item] = {
+      threshold, pre: isFunction(pre) ? pre: opts.pre
+    }
+    Array.prototype.slice.call(document.querySelectorAll(`[${item}]`)).forEach(elm => {
+      initElm(elm)
+      items.push(new Lazier(elm, item, threshold || opts.threshold))
+    })
   }
 
   function load () {

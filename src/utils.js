@@ -1,4 +1,4 @@
-import {attrs} from './constants'
+import {attrs, srcs} from './constants'
 
 export function requestFrame (fn) {
   var ticking = false
@@ -70,27 +70,33 @@ export function loadElm (elm, src) {
     setStatus(elm, attrs.error)
   }
 
-  img.src = elm.src = elm.getAttribute(src)
+  img.src = elm.src = srcs[src].pre(elm.getAttribute(src))
   elm.removeAttribute(src)
 }
 
-export function loadImg () {
-  var img = new Image()
-  img.onload = function () {
-    if (mode) oimg.src = src
-    isFunction(fn) && fn()
-  }
-  img.src = src
-}
+// export function loadImg () {
+//   var img = new Image()
+//   img.onload = function () {
+//     if (mode) oimg.src = src
+//     isFunction(fn) && fn()
+//   }
+//   img.src = src
+// }
 
 export function baseOptions (options = {}) {
   var opts = {
     src: attrs.src,
-    threshold: 1
+    threshold: 1,
+    pre: s => s
   }
   opts.src = options.src ? options.src : opts.src
   opts.threshold = options.threshold ? options.threshold : opts.threshold
+  opts.pre = isFunction(options.pre) ? options.pre : opts.pre
   return opts
+}
+
+export function isFunction (value) {
+  return typeof value === 'function'
 }
 
 export function isString (value) {
