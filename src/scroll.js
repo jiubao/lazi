@@ -1,5 +1,5 @@
 import Lazier from './lazier'
-import {throttle, requestFrame, supportPassive, loadElm, baseOptions} from './utils'
+import {throttle, requestFrame, supportPassive, loadElm, baseOptions, initElm} from './utils'
 
 var events = 'scroll'
 var items = []
@@ -24,6 +24,7 @@ export default (options = {}) => {
   function add (item, threshold) {
     item = item || opts.src
     Array.prototype.slice.call(document.querySelectorAll(`[${item}]`)).forEach(i => {
+      initElm(i)
       items.push(new Lazier(i, item, threshold || opts.threshold))
     })
     return load()

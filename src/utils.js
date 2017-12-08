@@ -50,17 +50,23 @@ export function supportPassive () {
   return passive
 }
 
+function setStatus (elm, status) {
+  elm.setAttribute(attrs.key, status)
+}
+
+export function initElm (elm) {
+  setStatus(elm, '')
+}
+
 export function loadElm (elm, src) {
-  elm.setAttribute(attrs.loading, '')
+  setStatus(elm, attrs.loading)
 
   var img = new Image()
   img.onload = function () {
-    elm.setAttribute(attrs.done, '')
-    elm.removeAttribute(attrs.loading)
+    setStatus(elm, attrs.done)
   }
   img.onerror = function () {
-    elm.setAttribute(attrs.error, '')
-    elm.removeAttribute(attrs.loading)
+    setStatus(elm, attrs.error)
   }
 
   img.src = elm.src = elm.getAttribute(src)

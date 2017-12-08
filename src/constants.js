@@ -1,7 +1,8 @@
 // export const dataSrc = 'data-lazi-src'
 export const attrs = {
+  key: 'data-lazi', // '', pending, done, error
   src: 'data-lazi-src',
-  loading: 'data-lazi-loading',
-  done: 'data-lazi-done',
-  error: 'data-lazi-error'
+  loading: 'loading',
+  done: 'done',
+  error: 'error'
 }

@@ -1,4 +1,4 @@
-import {loadElm, baseOptions} from './utils'
+import {loadElm, baseOptions, initElm} from './utils'
 
 var observers = {}
 
@@ -21,6 +21,7 @@ export default (options = {}) => {
     var observer = observers[srcprop]
     var elms = Array.prototype.slice.call(document.querySelectorAll(`[${srcprop}]`))
     elms.forEach(elm => {
+      initElm(elm)
       observer.observe(elm)
     })
     return this
