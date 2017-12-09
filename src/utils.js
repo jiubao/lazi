@@ -70,7 +70,7 @@ export function loadElm (elm, src) {
     setStatus(elm, attrs.error)
   }
 
-  img.src = elm.src = srcs[src].pre(elm.getAttribute(src))
+  img.src = elm.src = srcs[src].pre(elm.getAttribute(src), elm)
   elm.removeAttribute(src)
 }
 
