@@ -43,21 +43,3 @@ export default function eventify (obj) {
   return obj
 
 }
-
-// var f1 = () => {console.log('f1')}
-// var f2 = () => {console.log('f2')}
-// var f3 = () => {console.log('f3')}
-// var f4 = () => {console.log('f4')}
-// var f5 = () => {console.log('f5')}
-//
-// var o1 = {a: 1, b:2}
-// eventify(o1)
-//
-// o1.on('pre', f1)
-// o1.on('pre', f2)
-// o1.on('pre', f3)
-// o1.on('pre', f4)
-//
-// o1.on('pre', 'data-a1', f1)
-// o1.on('pre', 'data-a1', f2)
-// o1.on('pre', 'data-a1', f3)
