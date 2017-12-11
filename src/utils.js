@@ -106,3 +106,5 @@ export function isString (value) {
 export function isElement(node) {
   return !!(node && node.nodeName)
 }
+
+export const dump = () => {}

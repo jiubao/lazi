@@ -1,0 +1,56 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn add mocha
+
+PATH: 
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/mysql/bin:/Users/xiad/Library/Android/sdk/tools:/Users/xiad/Library/Android/sdk/platform-tools
+
+Yarn version: 
+  0.21.3
+
+Node version: 
+  8.1.2
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+    "name": "lazi",
+    "version": "0.0.14",
+    "description": "lazy load img",
+    "main": "dist/lazi.js",
+    "module": "dist/lazi.module.js",
+    "scripts": {
+      "minify": "uglifyjs $npm_package_main -cm -o $npm_package_main",
+      "build": "rollup -c",
+      "release": "npm run build && npm run minify && standard-version && git push --follow-tags origin master && npm publish"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/jiubao/lazi.git"
+    },
+    "author": "jiubao <xia.ldj@gmail.com>",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/jiubao/lazi/issues"
+    },
+    "homepage": "https://github.com/jiubao/lazi#readme",
+    "devDependencies": {
+      "rollup": "^0.52.1",
+      "rollup-plugin-buble": "^0.18.0",
+      "standard-version": "^4.2.0",
+      "uglify-js": "^3.2.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: write EPROTO 140737165235136:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:../deps/openssl/openssl/ssl/s23_clnt.c:797:
+  
+      at exports._errnoException (util.js:1016:11)
+      at WriteWrap.afterWrite [as oncomplete] (net.js:850:14)
