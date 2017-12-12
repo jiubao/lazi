@@ -2,8 +2,8 @@ import Lazier from './lazier'
 import {throttle, requestFrame, supportPassive, loadElm, baseOptions, initElm, isFunction} from './utils'
 import {srcs} from './constants'
 
-var events = 'scroll'
-// var events = ['scroll', 'resize']
+// var events = 'scroll'
+var events = 'scroll,resize,touchmove'
 
 export default (options = {}) => {
   var items = []
