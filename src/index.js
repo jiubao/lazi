@@ -1,5 +1,6 @@
 import scroll from './scroll'
 import intersect from './intersect'
+import eventify from './event'
 
 // todo:
 //  1. unbind elements when components unmounted
@@ -13,12 +14,12 @@ export default (options = {}) => {
   var strategy = options.strategy
 
   if (strategy === 0 && window.IntersectionObserver) {
-    return intersect(options)
+    return eventify(intersect(options))
   }
 
   if (strategy === 0) options.strategy = 1
 
   if (strategy === 2 && !window.requestAnimationFrame) options.strategy = 1
 
-  return scroll(options)
+  return eventify(scroll(options))
 }
