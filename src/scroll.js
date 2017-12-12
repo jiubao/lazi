@@ -14,7 +14,7 @@ export default (options = {}) => {
   var count = 1
   var passive = supportPassive()
 
-  add(opts.src, opts.threshold, opts.pre)
+  add(opts.src, opts.threshold)
   load()
   bind()
 
@@ -22,22 +22,18 @@ export default (options = {}) => {
     add //, get () { return items }
   }
 
-  function add (item, threshold, pre) {
-    if (item) addOne(item, threshold, pre)
+  function add (item, threshold) {
+    if (item) addOne(item, threshold)
     else {
       Object.keys(srcs).forEach(src => {
-        addOne(src, srcs[src].threshold, srcs[src].pre)
+        addOne(src, srcs[src].threshold)
       })
     }
     return load()
   }
 
-  function addOne (item, threshold, pre) {
-    // if (isFunction(pre)) srcs[item] = pre
-    // srcs[item] = isFunction(pre) ? pre : opts.pre
-    srcs[item] = {
-      threshold, pre: isFunction(pre) ? pre: opts.pre
-    }
+  function addOne (item, threshold) {
+    srcs[item] = { threshold }
     Array.prototype.slice.call(document.querySelectorAll(`[${item}]`)).forEach(elm => {
       initElm(elm)
       items.push(new Lazier(elm, item, threshold || opts.threshold))
@@ -51,7 +47,7 @@ export default (options = {}) => {
       var item = items[i]
       if (inViewport(item)) {
         // setSrc
-        loadElm(item.$el, item.$src)
+        loadElm(item.$el, item.$src, this)
         items.splice(i--, 1)
         len--
       }

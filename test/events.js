@@ -1,13 +1,14 @@
 import test from 'ava';
-import eventify from '../src/events'
+import eventify from '../src/event'
 // import lazi from '../'
 
 test.beforeEach(t => {
-  var f1 = () => {console.log('f1')}
-  var f2 = () => {console.log('f2')}
-  var f3 = () => {console.log('f3')}
-  var f4 = () => {console.log('f4')}
-  var f5 = () => {console.log('f5')}
+  var r = {count:0}
+  var f1 = () => {console.log('f1'); r.count++}
+  var f2 = () => {console.log('f2'); r.count++}
+  var f3 = () => {console.log('f3'); r.count++}
+  var f4 = () => {console.log('f4'); r.count++}
+  var f5 = () => {console.log('f5'); r.count++}
 
   var o1 = {a: 1, b:2}
   eventify(o1)
@@ -21,8 +22,10 @@ test.beforeEach(t => {
   o1.on('pre', 'data-a1', f2)
   o1.on('pre', 'data-a1', f3)
 
+  o1.pipe('pre.data-a1', f1)
+
   t.context = {
-    o1, f1, f2, f3, f4, f5
+    o1, f1, f2, f3, f4, f5, r
   }
 })
 
@@ -74,3 +77,21 @@ test('off', t => {
   t.is(o1.$all().pre.length, 3)
   t.is(o1.$all().pre['data-a1'].length, 1)
 });
+
+test('emit', t => {
+  var {o1, f1, f2, f3, f4, f5, r} = t.context
+  o1.emit('pre')
+  t.is(r.count, 7)
+})
+
+test('emit selector', t => {
+  var {o1, f1, f2, f3, f4, f5, r} = t.context
+  o1.emit('pre.data-a1')
+  t.is(r.count, 3)
+})
+
+test('pipe', t => {
+  var {o1, f1, f2, f3, f4, f5, r} = t.context
+  o1.pipe('pre.data-a1')
+  t.is(r.count, 1)
+})

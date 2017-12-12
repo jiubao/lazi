@@ -9,25 +9,24 @@ export default (options = {}) => {
 
   add(opts.src, opts.threshold)
 
-  return {
+  var result = {
     add
   }
 
-  function add (srcprop, threshold, pre) {
-    if (srcprop) addOne(srcprop, threshold, pre)
+  return result
+
+  function add (srcprop, threshold) {
+    if (srcprop) addOne(srcprop, threshold)
     else {
       Object.keys(srcs).forEach(src => {
-        addOne(src, srcs[src].threshold, srcs[src].pre)
+        addOne(src, srcs[src].threshold)
       })
     }
+    return this
   }
 
-  function addOne (srcprop, threshold, pre) {
-    // if (srcprop && isFunction(pre)) srcs[srcprop] = pre
-    srcs[srcprop] = {
-      threshold, pre: isFunction(pre) ? pre : opts.pre
-    }
-
+  function addOne (srcprop, threshold) {
+    srcs[srcprop] = { threshold }
     // if (!srcprop) srcprop = opts.src
     // selector = selector || opts.src
     if (!observers[srcprop]) observers[srcprop] = observe(load(srcprop), threshold)
@@ -49,7 +48,7 @@ export default (options = {}) => {
         // if (entry.intersectionRatio > 0) {
         var rect = entry.boundingClientRect
         if (entry.isIntersecting || (rect.top < root.bottom && rect.bottom > root.top && rect.left < root.right && rect.right > root.left)) {
-          loadElm(entry.target, src)
+          loadElm(entry.target, src, result)
           observer.unobserve(entry.target)
         }
       })

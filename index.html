@@ -47,7 +47,34 @@ var imgs = ["https://timg.ffan.com/convert/resize/width_562/qua…rl_T1YbbvB7xT1
 
 var i = 0
 window.laziInstance = lazi({threshold: 1, strategy: 0, pre: s => {console.log(i++); return s}})
-window.laziInstance.add('data-b1-src', null, (s) => {console.log(i++); return s})
+window.laziInstance
+  .add('data-b1-src', null, (s) => {console.log(i++); return s})
+  .pipe('pre.data-b1-src', function (src, elm) {
+    console.log(arguments)
+    return src
+  })
+
+  var f1 = () => {console.log('f1')}
+  var f2 = () => {console.log('f2')}
+  var f3 = () => {console.log('f3')}
+  var f4 = () => {console.log('f4')}
+  var f5 = () => {console.log('f5')}
+
+  // var o1 = {a: 1, b:2}
+  var o1 = window.laziInstance
+
+  o1.on('pre', f1)
+  o1.on('pre', f2)
+  o1.on('pre', f3)
+  o1.on('pre', f4)
+
+  o1.on('pre', 'data-a1', f1)
+  o1.on('pre', 'data-a1', f2)
+  o1.on('pre', 'data-a1', f3)
+
+  // o1.emit('pre')
+  // o1.emit('pre.data-a1')
+  // o1.pipe('pre.data-b1-src')
 
     </script>
   </body>

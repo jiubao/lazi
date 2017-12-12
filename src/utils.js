@@ -58,19 +58,22 @@ export function initElm (elm) {
   setStatus(elm, attrs.init)
 }
 
-export function loadElm (elm, src) {
+export function loadElm (elm, src, _this) {
   setStatus(elm, attrs.loading)
 
+  _this.emit('loading.' + src)
   var img = new Image()
   img.onload = function () {
     setStatus(elm, attrs.done)
+    _this.emit('done.' + src)
   }
   img.onerror = function () {
     elm.src = attrs.empty
     setStatus(elm, attrs.error)
+    _this.emit('error.' + src)
   }
 
-  img.src = elm.src = srcs[src].pre(elm.getAttribute(src), elm)
+  img.src = elm.src = _this.pipe('pre.' + src, elm.getAttribute(src), elm)
   elm.removeAttribute(src)
 }
 
@@ -86,12 +89,10 @@ export function loadElm (elm, src) {
 export function baseOptions (options = {}) {
   var opts = {
     src: attrs.src,
-    threshold: 1,
-    pre: s => s
+    threshold: 1
   }
   opts.src = options.src ? options.src : opts.src
   opts.threshold = options.threshold ? options.threshold : opts.threshold
-  opts.pre = isFunction(options.pre) ? options.pre : opts.pre
   return opts
 }
 
