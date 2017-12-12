@@ -18,9 +18,11 @@ export default (options = {}) => {
   load()
   bind()
 
-  return {
+  var result = {
     add //, get () { return items }
   }
+
+  return result
 
   function add (item, threshold) {
     if (item) addOne(item, threshold)
@@ -29,7 +31,8 @@ export default (options = {}) => {
         addOne(src, srcs[src].threshold)
       })
     }
-    return load()
+    load()
+    return this
   }
 
   function addOne (item, threshold) {
@@ -47,12 +50,11 @@ export default (options = {}) => {
       var item = items[i]
       if (inViewport(item)) {
         // setSrc
-        loadElm(item.$el, item.$src, this)
+        loadElm(item.$el, item.$src, result)
         items.splice(i--, 1)
         len--
       }
     }
-    return this
   }
 
   function bind () {
