@@ -3,7 +3,7 @@
   "version": "0.0.17",
   "description": "lazy load img",
   "browser": "dist/lazi.umd.js",
-  "main": "dist/lazi.cjs.js",
+  "main": "dist/lazi.umd.js",
   "module": "dist/lazi.esm.js",
   "scripts": {
     "test": "ava --verbose",
@@ -30,6 +30,7 @@
     "browser-env": "^3.2.4",
     "rollup": "^0.52.1",
     "rollup-plugin-buble": "^0.18.0",
+    "rollup-plugin-serve": "^0.4.2",
     "standard-version": "^4.2.0",
     "uglify-js": "^3.2.1"
   },

@@ -1,4 +1,5 @@
 import buble from 'rollup-plugin-buble'
+import serve from 'rollup-plugin-serve'
 
 const info = require('./package.json')
 const config = {}
@@ -17,6 +18,7 @@ export default {
     format: 'es'
   }],
   plugins: [
-    buble()
+    buble(),
+    serve()
   ]
 };

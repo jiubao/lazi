@@ -22,7 +22,7 @@ var lazi = require('lazi')
 
 The [UMD](https://github.com/umdjs/umd) build is available on [unpkg](https://unpkg.com):
 ```html
-<script src="https://unpkg.com/lazi/dist/lazi.js"></script>
+<script src="https://unpkg.com/lazi/dist/lazi.umd.js"></script>
 ```
 
 ## Usage
@@ -58,3 +58,41 @@ Add new dom elements into lazy queue:
 ### `load()`
 Normally, after adding new elements, a new reload need be triggered.
 While if we are in intersection mode, no need to reload.
+
+### `on(event, selector, handler)`
+```js
+var fn = () => {}
+instance.on('done', fn)
+instance.on('done', 'data-a1', fn)
+```
+
+### `off(event, selector, handler)`
+```js
+instance.off('done')
+instance.off('done', fn)
+instance.off('done', 'data-a1')
+instance.off('done', 'data-a1', fn)
+```
+
+### `emit(event, ...args)`
+```js
+instance.emit('done')
+instance.emit('done.data-a1')
+```
+
+### `pipe(event, handler)`
+```js
+instance.pipe('pre.data-a1', fn)
+instance.pipe('pre.data-a1')
+```
+
+## `events`
+* loading
+* done
+* error
+* pre
+
+## todos
+* support background-image
+* config loadElm
+* ...
