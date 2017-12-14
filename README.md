@@ -38,10 +38,16 @@ instance.add().load()
 instance.add('data-src', 3).load()
 ```
 
-## `strategies`
+### `strategies`
 * IntersectionObserver: 0
 * throttle: 1
 * requestAnimationFrame: 2
+
+### `events`
+* loading
+* done
+* error
+* pre
 
 ### `options({src, threshold, strategy, timeout})`
 Reset default configs:
@@ -86,13 +92,7 @@ instance.pipe('pre.data-a1', fn)
 instance.pipe('pre.data-a1')
 ```
 
-## `events`
-* loading
-* done
-* error
-* pre
-
-## todos
+## Todos
 * support background-image
 * config loadElm
 * ...
