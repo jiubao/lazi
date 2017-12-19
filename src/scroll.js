@@ -13,16 +13,37 @@ export default (options = {}) => {
 
   var count = 1
   var passive = supportPassive()
-
-  add(opts.src, opts.threshold)
-  load()
-  bind()
-
   var result = {
-    add //, get () { return items }
+    // add //, get () { return items }
+    add () {
+      add.apply(this, arguments)
+      return load()
+    }
   }
 
+  add(opts.src, opts.threshold)
+  // load()
+  bind()
+
   return result
+
+  function load () {
+    console.log('---', count++, '---', items.length)
+    console.log(result)
+
+    for (var i = 0, len = items.length; i < len; i++) {
+      var item = items[i]
+      if (inViewport(item)) {
+        // setSrc
+        loadElm.call(result, item.$el, item.$src)
+        items.splice(i--, 1)
+        len--
+      }
+    }
+
+    return result
+  }
+
 
   function add (item, threshold) {
     if (item) addOne(item, threshold)
@@ -31,30 +52,16 @@ export default (options = {}) => {
         addOne(src, srcs[src].threshold)
       })
     }
-    load()
-    return this
+    // load()
+    return result
   }
 
   function addOne (item, threshold) {
     srcs[item] = { threshold }
-    Array.prototype.slice.call(document.querySelectorAll(`[${item}]`)).forEach(elm => {
+    Array.prototype.slice.call(document.querySelectorAll(`[${item}]:not([data-lazi])`)).forEach(elm => {
       initElm(elm)
       items.push(new Lazier(elm, item, threshold || opts.threshold))
     })
-  }
-
-  function load () {
-    console.log('---', count++, '---', items.length)
-
-    for (var i = 0, len = items.length; i < len; i++) {
-      var item = items[i]
-      if (inViewport(item)) {
-        // setSrc
-        loadElm(item.$el, item.$src, result)
-        items.splice(i--, 1)
-        len--
-      }
-    }
   }
 
   function bind () {

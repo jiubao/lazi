@@ -7,11 +7,11 @@ export default (options = {}) => {
 
   var count = 1
 
-  add(opts.src, opts.threshold)
-
   var result = {
     add
   }
+
+  add(opts.src, opts.threshold)
 
   return result
 
@@ -48,7 +48,7 @@ export default (options = {}) => {
         // if (entry.intersectionRatio > 0) {
         var rect = entry.boundingClientRect
         if (entry.isIntersecting || (rect.top < root.bottom && rect.bottom > root.top && rect.left < root.right && rect.right > root.left)) {
-          loadElm(entry.target, src, result)
+          loadElm.call(result, entry.target, src)
           observer.unobserve(entry.target)
         }
       })

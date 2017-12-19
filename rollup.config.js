@@ -7,12 +7,12 @@ const config = {}
 export default {
   input: 'src/index.js',
   output: [{
-    file: info.browser,
-    format: 'umd',
-    name: 'lazi'
+    file: 'dist/lazi.cjs.js',
+    format: 'cjs'
   }, {
     file: info.main,
-    format: 'cjs'
+    format: 'umd',
+    name: 'lazi'
   }, {
     file: info.module,
     format: 'es'

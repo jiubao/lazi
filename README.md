@@ -1,5 +1,7 @@
-# lazi
+# Lazi
 Lazy loading images.
+
+[Demo](https://jsfiddle.net/xiad/30zqbohb/)
 
 ## Features
 * passive

@@ -12,14 +12,18 @@ import eventify from './event'
 export default (options = {}) => {
   if (!options.strategy) options.strategy = 0
   var strategy = options.strategy
+  var instance = null
 
   if (strategy === 0 && window.IntersectionObserver) {
-    return eventify(intersect(options))
+    instance = eventify(intersect(options))
+  } else {
+    if (strategy === 0) options.strategy = 1
+    if (strategy === 2 && !window.requestAnimationFrame) options.strategy = 1
+    instance = eventify(scroll(options))
   }
-
-  if (strategy === 0) options.strategy = 1
-
-  if (strategy === 2 && !window.requestAnimationFrame) options.strategy = 1
-
-  return eventify(scroll(options))
+  options.pipe && Object.keys(options.pipe).forEach(key => instance.pipe(key, options.pipe[key]))
+  options.loading && instance.on('loading', options.loading)
+  options.done && instance.on('done', options.done)
+  options.error && instance.on('error', options.error)
+  return instance.add()
 }

@@ -58,22 +58,22 @@ export function initElm (elm) {
   setStatus(elm, attrs.init)
 }
 
-export function loadElm (elm, src, _this) {
+export function loadElm (elm, src) {
   setStatus(elm, attrs.loading)
 
-  _this.emit('loading.' + src)
+  isFunction(this.emit) && this.emit('loading.' + src)
   var img = new Image()
   img.onload = function () {
     setStatus(elm, attrs.done)
-    _this.emit('done.' + src)
+    isFunction(this.emit) && this.emit('done.' + src)
   }
   img.onerror = function () {
     elm.src = attrs.empty
     setStatus(elm, attrs.error)
-    _this.emit('error.' + src)
+    isFunction(this.emit) && this.emit('error.' + src)
   }
 
-  img.src = elm.src = _this.pipe('pre.' + src, elm.getAttribute(src), elm)
+  img.src = elm.src = isFunction(this.pipe) ? this.pipe('pre.' + src, elm.getAttribute(src), elm) : elm.getAttribute(src)
   elm.removeAttribute(src)
 }
 
