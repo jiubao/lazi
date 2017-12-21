@@ -1,6 +1,6 @@
 {
   "name": "lazi",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "lazy load img",
   "browser": "dist/lazi.umd.js",
   "main": "dist/lazi.cjs.js",
