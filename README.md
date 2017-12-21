@@ -40,8 +40,8 @@ lazi()
 ## API
 ```js
 var instance = lazi({threshold: 1, strategy: 2})
-instance.add().load()
-instance.add('data-src', 3).load()
+instance.add()
+instance.add('data-src', 3)
 ```
 
 ### `strategies`
@@ -99,7 +99,7 @@ instance.pipe('pre.data-a1')
 ```
 
 ## Todos
-* check element type
+* ~~check element type~~
 * ~~support background-image~~
 * config loadElm
 * ...
