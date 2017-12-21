@@ -59,39 +59,41 @@ export function initElm (elm) {
 }
 
 export function loadElm (elm, src) {
-  setStatus(elm, attrs.loading)
+  var isBackground = elm.hasAttribute('data-lazi-bg')
+  var isImage = isImg(elm) || isBackground
 
-  isFunction(this.emit) && this.emit('loading.' + src)
-  var img = new Image()
-  img.onload = function () {
-    setStatus(elm, attrs.done)
-    isFunction(this.emit) && this.emit('done.' + src)
-  }
-  img.onerror = function () {
-    elm.src = attrs.empty
-    setStatus(elm, attrs.error)
-    isFunction(this.emit) && this.emit('error.' + src)
+  if (isImage) {
+    setStatus(elm, attrs.loading)
+    isFunction(this.emit) && this.emit('loading.' + src)
+    var img = new Image()
+    img.onload = function () {
+      setStatus(elm, attrs.done)
+      isFunction(this.emit) && this.emit('done.' + src)
+    }
+    img.onerror = function () {
+      elm.src = attrs.empty
+      setStatus(elm, attrs.error)
+      isFunction(this.emit) && this.emit('error.' + src)
+    }
   }
 
   var _src = isFunction(this.pipe) ? this.pipe('pre.' + src, elm.getAttribute(src), elm) : elm.getAttribute(src)
-  if (elm.hasAttribute('data-lazi-bg')) {
+
+  if (isBackground) {
     elm.style.backgroundImage = `url(${_src})`
   } else {
     elm.src = _src
   }
-  img.src = _src
 
   elm.removeAttribute(src)
-}
 
-// export function loadImg () {
-//   var img = new Image()
-//   img.onload = function () {
-//     if (mode) oimg.src = src
-//     isFunction(fn) && fn()
-//   }
-//   img.src = src
-// }
+  if (isImage) {
+    img.src = _src
+  } else {
+    setStatus(elm, attrs.done)
+    isFunction(this.emit) && this.emit('done.' + src)
+  }
+}
 
 export function baseOptions (options = {}) {
   var opts = {

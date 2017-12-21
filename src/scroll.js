@@ -2,7 +2,6 @@ import Lazier from './lazier'
 import {throttle, requestFrame, supportPassive, loadElm, baseOptions, initElm, isFunction} from './utils'
 import {srcs} from './constants'
 
-// var events = 'scroll'
 var events = 'scroll,resize,touchmove'
 
 export default (options = {}) => {
@@ -14,7 +13,6 @@ export default (options = {}) => {
   var count = 1
   var passive = supportPassive()
   var result = {
-    // add //, get () { return items }
     add () {
       add.apply(this, arguments)
       return load()
@@ -34,7 +32,6 @@ export default (options = {}) => {
     for (var i = 0, len = items.length; i < len; i++) {
       var item = items[i]
       if (inViewport(item)) {
-        // setSrc
         loadElm.call(result, item.$el, item.$src)
         items.splice(i--, 1)
         len--

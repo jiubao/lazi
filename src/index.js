@@ -2,13 +2,13 @@ import scroll from './scroll'
 import intersect from './intersect'
 import eventify from './event'
 
-// todo:
-//  1. unbind elements when components unmounted
-//  2. throttle
-//  3. requestAnimationFrame
-//  4. IntersectionObserver
-//  5. add() when not specify srcprop, reload all srcprops
-//  6. _
+/** todo:
+ * 1. unbind elements when components unmounted
+ * 2. throttle - done
+ * 3. requestAnimationFrame - done
+ * 4. IntersectionObserver - done
+ * 5. add() when not specify srcprop, reload all srcprops - done
+ **/
 export default (options = {}) => {
   if (!options.strategy) options.strategy = 0
   var strategy = options.strategy

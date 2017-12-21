@@ -32,6 +32,10 @@ The [UMD](https://github.com/umdjs/umd) build is available on [unpkg](https://un
 import lazi from 'lazi'
 lazi()
 ```
+```html
+<img data-lazi-src="a.png" />
+<div data-lazi-src="a.png" data-lazi-bg></div>
+```
 
 ## API
 ```js
@@ -63,9 +67,9 @@ Add new dom elements into lazy queue:
 * `srcprop` Lazy src property (eg. `<img data-src="xx.png" />`)
 * `threshold` How far to preload for current elements.
 
-### `load()`
-Normally, after adding new elements, a new reload need be triggered.
-While if we are in intersection mode, no need to reload.
+### ~~`load()`~~
+~~Normally, after adding new elements, a new reload need be triggered.~~
+~~While if we are in intersection mode, no need to reload.~~
 
 ### `on(event, selector, handler)`
 ```js
@@ -96,6 +100,6 @@ instance.pipe('pre.data-a1')
 
 ## Todos
 * check element type
-* support background-image
+* ~~support background-image~~
 * config loadElm
 * ...

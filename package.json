@@ -3,11 +3,11 @@
   "version": "0.0.20",
   "description": "lazy load img",
   "browser": "dist/lazi.umd.js",
-  "main": "dist/lazi.umd.js",
+  "main": "dist/lazi.cjs.js",
   "module": "dist/lazi.esm.js",
   "scripts": {
     "test": "ava --verbose",
-    "minify": "uglifyjs $npm_package_main -cm -o $npm_package_main",
+    "minify": "uglifyjs $npm_package_browser -cm -o $npm_package_browser",
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "release": "npm run build && npm run minify && standard-version && git push --follow-tags origin master && npm publish"

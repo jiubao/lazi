@@ -1,4 +1,3 @@
-
 export default class Lazier {
   constructor (el, src, threshold) {
     this.$el = el
