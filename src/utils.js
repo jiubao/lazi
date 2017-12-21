@@ -73,7 +73,14 @@ export function loadElm (elm, src) {
     isFunction(this.emit) && this.emit('error.' + src)
   }
 
-  img.src = elm.src = isFunction(this.pipe) ? this.pipe('pre.' + src, elm.getAttribute(src), elm) : elm.getAttribute(src)
+  var _src = isFunction(this.pipe) ? this.pipe('pre.' + src, elm.getAttribute(src), elm) : elm.getAttribute(src)
+  if (elm.hasAttribute('data-lazi-bg')) {
+    elm.style.backgroundImage = `url(${_src})`
+  } else {
+    elm.src = _src
+  }
+  img.src = _src
+
   elm.removeAttribute(src)
 }
 
@@ -106,6 +113,10 @@ export function isString (value) {
 
 export function isElement(node) {
   return !!(node && node.nodeName)
+}
+
+export function isImg(el) {
+  return el && el.tagName === 'IMG'
 }
 
 export const dump = () => {}

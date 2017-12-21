@@ -95,6 +95,7 @@ instance.pipe('pre.data-a1')
 ```
 
 ## Todos
+* check element type
 * support background-image
 * config loadElm
 * ...
